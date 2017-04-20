@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D272BD2A0F942B5D6239FA3E7FC2C6DA92AB2725",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D272BD2A0F942B5D6239FA3E7FC2C6DA92AB2725" : 9223372036854775807,
+    "162E1497FA9384901A3131EC5679AB398962F5F2" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2DBF4AD9-525D-431B-815F-7E9E4B03092B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D272BD2A0F942B5D6239FA3E7FC2C6DA92AB2725" : "codepath_lab4\/",
+    "162E1497FA9384901A3131EC5679AB398962F5F2" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CodepathLab4",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CodepathLab4\/CodepathLab4.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SocialLocationReminder\/GoTeam.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "162E1497FA9384901A3131EC5679AB398962F5F2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:abhandary\/codepath_lab4.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D272BD2A0F942B5D6239FA3E7FC2C6DA92AB2725"
+    }
+  ]
+}
