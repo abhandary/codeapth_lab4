@@ -79,6 +79,10 @@ class ViewController: UIViewController {
             let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(createdImagePinched))
             newlyCreatedFace.addGestureRecognizer(pinchGR)
             
+            let rotateGR = UIRotationGestureRecognizer(target: self, action: #selector(createdImageRotated))
+            newlyCreatedFace.addGestureRecognizer(rotateGR)
+            rotateGR.delegate = self
+            
             // Add the new face to the tray's parent view.
             view.addSubview(newlyCreatedFace)
             
@@ -114,9 +118,25 @@ class ViewController: UIViewController {
     func createdImagePinched(sender : UIPinchGestureRecognizer) {
         
         let scale = sender.scale
-
+        print("pinched")
         let imageView = sender.view as! UIImageView
         imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        // imageView.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
+    }
+    
+    func createdImageRotated(sender : UIRotationGestureRecognizer) {
+        let rotation = sender.rotation
+        print("rotated = \(rotation)")
+        let imageView = sender.view as! UIImageView
+        imageView.transform = imageView.transform.rotated(by: CGFloat(45 * M_PI / 180))
+        // imageView.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
+
+    }
+}
+
+extension UIViewController : UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 
