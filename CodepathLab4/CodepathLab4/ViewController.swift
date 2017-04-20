@@ -76,6 +76,9 @@ class ViewController: UIViewController {
             let panGR = UIPanGestureRecognizer(target: self, action: #selector(createdImagePanned))
             newlyCreatedFace.addGestureRecognizer(panGR)
             
+            let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(createdImagePinched))
+            newlyCreatedFace.addGestureRecognizer(pinchGR)
+            
             // Add the new face to the tray's parent view.
             view.addSubview(newlyCreatedFace)
             
@@ -106,6 +109,14 @@ class ViewController: UIViewController {
         } else if panGestureRecognizer.state == .ended {
             imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
+    }
+    
+    func createdImagePinched(sender : UIPinchGestureRecognizer) {
+        
+        let scale = sender.scale
+
+        let imageView = sender.view as! UIImageView
+        imageView.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
 }
 
