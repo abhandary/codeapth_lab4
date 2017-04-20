@@ -72,6 +72,10 @@ class ViewController: UIViewController {
             // Create a new image view that has the same image as the one currently panning
             newlyCreatedFace = UIImageView(image: imageView.image)
             
+            newlyCreatedFace.isUserInteractionEnabled = true
+            let panGR = UIPanGestureRecognizer(target: self, action: #selector(createdImagePanned))
+            newlyCreatedFace.addGestureRecognizer(panGR)
+            
             // Add the new face to the tray's parent view.
             view.addSubview(newlyCreatedFace)
             
@@ -86,11 +90,22 @@ class ViewController: UIViewController {
             newlyCreatedFace.center = point
         } else if panGestureRecognizer.state == .ended {
             print("Gesture ended at: \(point)")
-            
-            
         }
-
+    }
+    
+    func createdImagePanned(panGestureRecognizer : UIPanGestureRecognizer) {
         
+        let imageView = panGestureRecognizer.view as! UIImageView
+        
+        let point = panGestureRecognizer.location(in: self.view)
+        
+        if panGestureRecognizer.state == .began {
+            imageView.transform = CGAffineTransform(scaleX: 2, y: 2)
+        } else if panGestureRecognizer.state == .changed {
+            imageView.center = point
+        } else if panGestureRecognizer.state == .ended {
+            imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
     }
 }
 
