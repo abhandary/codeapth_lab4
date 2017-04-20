@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        trayCenterWhenOpen = CGPoint(x: trayView.center.x, y: trayView.frame.size.height / 2)
-        trayCenterWhenClosed = CGPoint(x: trayView.center.x, y: self.view.frame.size.height - trayView.frame.size.height / 2)
+        trayCenterWhenOpen = CGPoint(x: trayView.center.x, y: self.view.frame.size.height - trayView.frame.size.height / 2)
+        trayCenterWhenClosed =  CGPoint(x: trayView.center.x, y: self.view.frame.height + trayView.frame.size.height / 4)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -48,9 +48,15 @@ class ViewController: UIViewController {
         } else if panGestureRecognizer.state == .ended {
             print("Gesture ended at: \(point)")
             let finalValue = velocity.y > 0 ? trayCenterWhenClosed : trayCenterWhenOpen
-            UIView.animate(withDuration: 0.5, animations: {
-                self.trayView.center = finalValue!
-            })
+            
+            UIView.animate(withDuration: 0.8,
+                           delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 2.0,
+                           options: .beginFromCurrentState,
+                           animations: {
+                            self.trayView.center = finalValue! },
+                           completion: nil)
         }
     }
 
