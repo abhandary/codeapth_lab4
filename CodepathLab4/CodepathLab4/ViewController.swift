@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     var newlyCreatedFace: UIImageView!
     
     
+    var rotationInProgress = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         trayCenterWhenOpen = CGPoint(x: trayView.center.x, y: self.view.frame.size.height - trayView.frame.size.height / 2)
@@ -79,9 +81,13 @@ class ViewController: UIViewController {
             let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(createdImagePinched))
             newlyCreatedFace.addGestureRecognizer(pinchGR)
             
-            let rotateGR = UIRotationGestureRecognizer(target: self, action: #selector(createdImageRotated))
-            newlyCreatedFace.addGestureRecognizer(rotateGR)
-            rotateGR.delegate = self
+            // let rotateGR = UIRotationGestureRecognizer(target: self, action: #selector(createdImageRotated))
+            //newlyCreatedFace.addGestureRecognizer(rotateGR)
+            // rotateGR.delegate = self
+            
+            let doubleTapGR = UITapGestureRecognizer(target: self, action: #selector(createdImageDoubleTapped))
+            doubleTapGR.numberOfTapsRequired = 2
+            newlyCreatedFace.addGestureRecognizer(doubleTapGR)
             
             // Add the new face to the tray's parent view.
             view.addSubview(newlyCreatedFace)
@@ -125,18 +131,30 @@ class ViewController: UIViewController {
     }
     
     func createdImageRotated(sender : UIRotationGestureRecognizer) {
+        
         let rotation = sender.rotation
+        
         print("rotated = \(rotation)")
-        let imageView = sender.view as! UIImageView
-        imageView.transform = imageView.transform.rotated(by: CGFloat(45 * M_PI / 180))
+        
+        if sender.state == .began {
+            rotationInProgress = true
+        } else if sender.state == .changed {
+        } else {
+            rotationInProgress = false
+        }
         // imageView.transform = CGAffineTransform(rotationAngle: CGFloat(45 * M_PI / 180))
 
+    }
+    
+    func createdImageDoubleTapped(sender : UIRotationGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        imageView.removeFromSuperview()
     }
 }
 
 extension UIViewController : UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        return false
     }
 }
 
